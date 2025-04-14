@@ -3,6 +3,9 @@ package mk.ukim.finki.emtlab.model.domain;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Data
 public class Host {
@@ -14,13 +17,17 @@ public class Host {
     @ManyToOne
     private Country country;
 
+    @ManyToMany(cascade = CascadeType.MERGE)
+    private List<Guest> guests;
+
     public Host(String name, String surname, Country country) {
         this.name = name;
         this.surname = surname;
         this.country = country;
+        guests = new ArrayList<>();
     }
 
     public Host() {
-
+        guests = new ArrayList<>();
     }
 }

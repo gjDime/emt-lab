@@ -5,14 +5,14 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.4.4</version>
+        <version>3.4.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>mk.ukim.finki</groupId>
-    <artifactId>emt-lab</artifactId>
+    <artifactId>emt-2025</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>emt-lab</name>
-    <description>emt-lab</description>
+    <name>emt-2025</name>
+    <description>emt-2025</description>
     <url/>
     <licenses>
         <license/>
@@ -47,7 +47,6 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.30</version>
             <optional>true</optional>
         </dependency>
         <dependency>
@@ -68,7 +67,6 @@
             <groupId>org.thymeleaf.extras</groupId>
             <artifactId>thymeleaf-extras-springsecurity6</artifactId>
         </dependency>
-
     </dependencies>
 
     <build>
