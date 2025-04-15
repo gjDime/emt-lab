@@ -11,6 +11,10 @@ public record DisplayHostDto(
         String surname,
         Long country
 ) {
+    public Host toHost(Country country) {
+        return new Host(name, surname, country);
+    }
+
     public static DisplayHostDto from(Host host) {
         return new DisplayHostDto(host.getId(), host.getName(), host.getSurname(), host.getCountry().getId());
     }
@@ -19,7 +23,4 @@ public record DisplayHostDto(
         return hosts.stream().map(DisplayHostDto::from).toList();
     }
 
-    public Host toHost(Country country) {
-        return new Host(name, surname, country);
-    }
 }

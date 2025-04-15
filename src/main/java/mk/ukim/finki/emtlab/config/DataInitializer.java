@@ -46,6 +46,10 @@ public class DataInitializer {
         guest1.getHosts().add(host1);
         host1.getGuests().add(guest1);
         guestRepository.save(guest1);
+
+        guest1.getHosts().add(host2);
+        host2.getGuests().add(guest2);
+        guestRepository.save(guest2);
     }
 }
 

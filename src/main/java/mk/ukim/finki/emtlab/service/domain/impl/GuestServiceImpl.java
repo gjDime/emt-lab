@@ -35,18 +35,8 @@ public class GuestServiceImpl implements GuestService {
 
     @Override
     public Optional<Guest> save(Guest guest) {
-
-//        Guest guest1 = guestRepository.save(new Guest("gostin1", country1));
-//        Guest guest2 = guestRepository.save(new Guest("gostin2", country2));
-//
-//        guest1.getHosts().add(host1);
-//        host1.getGuests().add(guest1);
-//        guestRepository.save(guest1);
-
-
         if (guest.getCountry() != null && countryService.findById(guest.getCountry().getId()).isPresent())
-            return Optional.of(guestRepository.save
-                    (new Guest(guest.getName(), countryService.findById(guest.getCountry().getId()).get())));
+            return Optional.of(guestRepository.save(guest));
         return Optional.empty();
     }
 
