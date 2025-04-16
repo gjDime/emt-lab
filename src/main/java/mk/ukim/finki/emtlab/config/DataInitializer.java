@@ -1,15 +1,11 @@
 package mk.ukim.finki.emtlab.config;
 
 import jakarta.annotation.PostConstruct;
-import mk.ukim.finki.emtlab.model.domain.Accommodation;
-import mk.ukim.finki.emtlab.model.domain.Country;
-import mk.ukim.finki.emtlab.model.domain.Guest;
-import mk.ukim.finki.emtlab.model.domain.Host;
+import mk.ukim.finki.emtlab.model.domain.*;
 import mk.ukim.finki.emtlab.model.enumerations.Category;
-import mk.ukim.finki.emtlab.repository.AccommodationRepository;
-import mk.ukim.finki.emtlab.repository.CountryRepository;
-import mk.ukim.finki.emtlab.repository.GuestRepository;
-import mk.ukim.finki.emtlab.repository.HostRepository;
+import mk.ukim.finki.emtlab.model.enumerations.Role;
+import mk.ukim.finki.emtlab.repository.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,12 +14,16 @@ public class DataInitializer {
     private final CountryRepository countryRepository;
     private final HostRepository hostRepository;
     private final GuestRepository guestRepository;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public DataInitializer(AccommodationRepository accommodationRepository, CountryRepository countryRepository, HostRepository hostRepository, GuestRepository guestRepository) {
+    public DataInitializer(AccommodationRepository accommodationRepository, CountryRepository countryRepository, HostRepository hostRepository, GuestRepository guestRepository, UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.accommodationRepository = accommodationRepository;
         this.countryRepository = countryRepository;
         this.hostRepository = hostRepository;
         this.guestRepository = guestRepository;
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @PostConstruct
@@ -50,6 +50,22 @@ public class DataInitializer {
         guest1.getHosts().add(host2);
         host2.getGuests().add(guest2);
         guestRepository.save(guest2);
+
+        userRepository.save(new User(
+                "dg",
+                passwordEncoder.encode("dg"),
+                "Dime",
+                "Gjorgjiev",
+                Role.ROLE_ADMIN
+        ));
+
+        userRepository.save(new User(
+                "user",
+                passwordEncoder.encode("user"),
+                "user",
+                "user",
+                Role.ROLE_USER
+        ));
     }
 }
 
