@@ -3,7 +3,6 @@ package mk.ukim.finki.emtlab.model.domain;
 import jakarta.persistence.*;
 import lombok.Data;
 import mk.ukim.finki.emtlab.model.enumerations.Category;
-import org.hibernate.annotations.OnDelete;
 
 @Entity
 @Data
@@ -20,14 +19,19 @@ public class Accommodation {
     @Enumerated(EnumType.STRING)
     private Category category;
 
+    @ManyToOne
+    private ReservedAccommodation reservedAccommodation;
+    private Boolean rented;
+
     public Accommodation(String name, Integer numberOfRooms, Host host, Category category) {
         this.name = name;
         this.numberOfRooms = numberOfRooms;
         this.host = host;
         this.category = category;
+        rented = false;
     }
 
     public Accommodation() {
-
+        rented = false;
     }
 }
