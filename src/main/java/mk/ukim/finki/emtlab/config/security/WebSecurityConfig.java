@@ -1,7 +1,8 @@
-package mk.ukim.finki.emtlab.config;
+package mk.ukim.finki.emtlab.config.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -15,6 +16,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.List;
 
+@Profile("test")
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -25,6 +27,7 @@ public class WebSecurityConfig {
     public WebSecurityConfig(CustomUsernamePasswordAuthenticationProvider authenticationProvider) {
         this.authenticationProvider = authenticationProvider;
     }
+
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
@@ -43,12 +46,14 @@ public class WebSecurityConfig {
                 .cors(httpSecurityCorsConfigurer -> httpSecurityCorsConfigurer.configurationSource(
                         corsConfigurationSource()))
                 .authorizeHttpRequests(requests -> requests.requestMatchers(
-                        "/api/products",
-                        "/api/categories",
-                        "/api/manufacturers",
-                        "api/user/login",
-                        "api/user/register"
-                ).permitAll().anyRequest().hasRole("ADMIN"))
+                                "/swagger-ui**",
+                                "/api/products",
+                                "/api/categories",
+                                "/api/manufacturers",
+                                "api/user/login",
+                                "api/user/register"
+                        ).permitAll()
+                        .anyRequest().hasRole("ADMIN"))
                 .formLogin((form) -> form.loginProcessingUrl(
                                 "/api/user/login")
                         .permitAll()

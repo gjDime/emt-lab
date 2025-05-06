@@ -1,5 +1,6 @@
 package mk.ukim.finki.emtlab.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -14,10 +15,14 @@ public class Host {
     private Long id;
     private String name;
     private String surname;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     private Country country;
 
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(name = "host_guest",
+            joinColumns = @JoinColumn(name = "host_id"),
+            inverseJoinColumns = @JoinColumn(name = "guest_id"))
     private List<Guest> guests;
 
     public Host(String name, String surname, Country country) {

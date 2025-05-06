@@ -34,8 +34,8 @@ public class User implements UserDetails {
     @Enumerated(value = EnumType.STRING)
     private Role role;
 
-    @ManyToOne
-    private ReservedAccommodation reservedAccommodation;
+    @OneToMany(mappedBy = "user")
+    private List<Accommodation> accommodations;
 
 
     public User() {

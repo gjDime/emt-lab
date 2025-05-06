@@ -2,6 +2,7 @@ package mk.ukim.finki.emtlab.web;
 
 import mk.ukim.finki.emtlab.dto.CreateAccommodationDto;
 import mk.ukim.finki.emtlab.dto.DisplayAccommodationDto;
+import mk.ukim.finki.emtlab.model.views.AccommodationsPerHostView;
 import mk.ukim.finki.emtlab.service.application.AccommodationApplicationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -52,5 +53,10 @@ public class AccommodationController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/by-host")
+    public ResponseEntity<List<AccommodationsPerHostView>> accommodationsPerHost(){
+        return ResponseEntity.ok().body(this.accommodationApplicationService.findAllPerHost());
     }
 }

@@ -2,6 +2,7 @@ package mk.ukim.finki.emtlab.service.application.impl;
 
 import mk.ukim.finki.emtlab.dto.CreateAccommodationDto;
 import mk.ukim.finki.emtlab.dto.DisplayAccommodationDto;
+import mk.ukim.finki.emtlab.model.views.AccommodationsPerHostView;
 import mk.ukim.finki.emtlab.service.application.AccommodationApplicationService;
 import mk.ukim.finki.emtlab.service.domain.AccommodationService;
 import mk.ukim.finki.emtlab.service.domain.HostService;
@@ -55,5 +56,10 @@ public class AccommodationApplicationServiceImpl implements AccommodationApplica
     @Override
     public void deleteById(long id) {
         accommodationService.deleteById(id);
+    }
+
+    @Override
+    public List<AccommodationsPerHostView> findAllPerHost() {
+        return accommodationService.findAllPerHost();
     }
 }

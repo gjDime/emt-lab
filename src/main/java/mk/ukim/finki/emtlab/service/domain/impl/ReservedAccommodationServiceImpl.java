@@ -2,7 +2,7 @@ package mk.ukim.finki.emtlab.service.domain.impl;
 
 import mk.ukim.finki.emtlab.model.domain.Accommodation;
 import mk.ukim.finki.emtlab.model.domain.ReservedAccommodation;
-import mk.ukim.finki.emtlab.model.exceptions.AccomodationAlreadyRentedException;
+import mk.ukim.finki.emtlab.model.exceptions.AccommodationAlreadyRentedException;
 import mk.ukim.finki.emtlab.repository.ReservedAccommodationRepository;
 import mk.ukim.finki.emtlab.service.domain.AccommodationService;
 import mk.ukim.finki.emtlab.service.domain.ReservedAccommodationService;
@@ -26,7 +26,7 @@ public class ReservedAccommodationServiceImpl implements ReservedAccommodationSe
     public Optional<ReservedAccommodation> reserveAccommodation(Long accommodationId, String userId) {
         var acc = accommodationService.findById(accommodationId);
         if (acc.isEmpty() || acc.get().getRented()) {
-            throw new AccomodationAlreadyRentedException();
+            throw new AccommodationAlreadyRentedException();
         }
         acc.get().setRented(Boolean.TRUE);
 

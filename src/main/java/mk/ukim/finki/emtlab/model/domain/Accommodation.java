@@ -13,15 +13,17 @@ public class Accommodation {
     private String name;
     private Integer numberOfRooms;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     private Host host;
 
     @Enumerated(EnumType.STRING)
     private Category category;
 
-    @ManyToOne
-    private ReservedAccommodation reservedAccommodation;
     private Boolean rented;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Accommodation(String name, Integer numberOfRooms, Host host, Category category) {
         this.name = name;

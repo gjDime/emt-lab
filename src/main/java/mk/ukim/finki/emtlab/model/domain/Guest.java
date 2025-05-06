@@ -15,10 +15,10 @@ public class Guest {
     private long id;
     private String name;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     private Country country;
 
-    @ManyToMany(mappedBy = "guests", cascade = CascadeType.MERGE)
+    @ManyToMany(mappedBy = "guests", cascade = CascadeType.REMOVE)
     private List<Host> hosts;
 
     public Guest() {
