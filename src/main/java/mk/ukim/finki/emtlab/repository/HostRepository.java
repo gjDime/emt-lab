@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface HostRepository extends JpaRepository<Host, Long> {
 
-    @Query("select h.name, h.surname from Host h")
+    @Query("select h.name as name, h.surname as surname from Host h")
     List<HostProjection> takeNameAndSurnameByProjection();
 }

@@ -1,5 +1,6 @@
 package mk.ukim.finki.emtlab.service.domain.impl;
 
+import mk.ukim.finki.emtlab.dto.AccommodationDetailsDto;
 import mk.ukim.finki.emtlab.model.domain.Accommodation;
 import mk.ukim.finki.emtlab.model.exceptions.AccommodationAlreadyRentedException;
 import mk.ukim.finki.emtlab.model.views.AccommodationsPerHostView;

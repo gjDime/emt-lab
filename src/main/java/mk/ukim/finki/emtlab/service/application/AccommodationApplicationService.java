@@ -1,5 +1,6 @@
 package mk.ukim.finki.emtlab.service.application;
 
+import mk.ukim.finki.emtlab.dto.AccommodationDetailsDto;
 import mk.ukim.finki.emtlab.dto.CreateAccommodationDto;
 import mk.ukim.finki.emtlab.dto.DisplayAccommodationDto;
 import mk.ukim.finki.emtlab.model.views.AccommodationsPerHostView;
@@ -19,4 +20,6 @@ public interface AccommodationApplicationService {
     void deleteById(long id);
 
     List<AccommodationsPerHostView> findAllPerHost();
+
+    Optional<AccommodationDetailsDto> findDetailsById(Long id);
 }

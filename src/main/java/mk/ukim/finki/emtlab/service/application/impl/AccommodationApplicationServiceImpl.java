@@ -1,5 +1,6 @@
 package mk.ukim.finki.emtlab.service.application.impl;
 
+import mk.ukim.finki.emtlab.dto.AccommodationDetailsDto;
 import mk.ukim.finki.emtlab.dto.CreateAccommodationDto;
 import mk.ukim.finki.emtlab.dto.DisplayAccommodationDto;
 import mk.ukim.finki.emtlab.model.views.AccommodationsPerHostView;
@@ -61,5 +62,10 @@ public class AccommodationApplicationServiceImpl implements AccommodationApplica
     @Override
     public List<AccommodationsPerHostView> findAllPerHost() {
         return accommodationService.findAllPerHost();
+    }
+
+    @Override
+    public Optional<AccommodationDetailsDto> findDetailsById(Long id) {
+        return accommodationService.findById(id).map(AccommodationDetailsDto::from);
     }
 }
